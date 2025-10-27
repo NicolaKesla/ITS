@@ -17,20 +17,20 @@ const InternshipDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchInternship = async () => {
+      try {
+        setLoading(true);
+        const response = await internshipsAPI.getById(id);
+        setInternship(response.data);
+      } catch (err) {
+        setError('Failed to fetch internship details');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchInternship();
   }, [id]);
-
-  const fetchInternship = async () => {
-    try {
-      setLoading(true);
-      const response = await internshipsAPI.getById(id);
-      setInternship(response.data);
-    } catch (err) {
-      setError('Failed to fetch internship details');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleApply = async () => {
     try {
