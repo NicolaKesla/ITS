@@ -1,0 +1,80 @@
+/* Admin main page layout: left blue sidebar and white content area */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.admin-sidebar {
+  width: 220px;
+  background: linear-gradient(180deg, #031e4a, #003d82);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar-top {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar-logo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.system-name {
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.menu-item {
+  text-align: left;
+  padding: 12px 18px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.menu-spacer {
+  flex: 1;
+}
+
+.admin-content {
+  flex: 1;
+  background: #fff;
+  padding: 24px 28px;
+}
+
+.content-inner {
+  background: #fff;
+  border-radius: 6px;
+  min-height: 600px;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    display: none;
+  }
+}

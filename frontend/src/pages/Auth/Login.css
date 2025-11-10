@@ -23,51 +23,21 @@
   margin: auto; /* Ekstra ortalama */
 }
 
-/* 1. Logonun Bulunduğu Alanın Tam Genişlik Kaplaması */
 .login-header {
-  width: 100%; /* BURASI ÖNEMLİ: Kapsayıcıyı tam genişlik yapar */
-  padding: 10px 0; /* Üstten ve alttan boşluk bırakır */
+  width: 100%;
+  padding: 20px 0;
 }
 
 .logo-container {
-  text-align: center; /* Logoyu ortalamak için */
+  text-align: center;
 }
 
 .gtu-logo {
-  /*ekranın genişliğine göre uyumlu olması için*/
-  max-width: 150px;
+  max-width: 100%;
   height: auto;
   display: block; /* Tek başına satır içi eleman gibi davranmasını engellemek için */
   width: 100%;
 }
-
-.color-strips {
-  display: flex;
-  width: 100%; /* Tam genişlik */
-  flex-direction: column; /* Şeritleri alt alta sırala */
-  gap: 3px; /* Şeritler arasına azıcık boşluk */
-  margin-bottom: 20px; /* Opsiyonel: Şeritlerin altına boşluk */
-  /* Login kartının içinde düzgün durması için overflow hidden gerekebilir, 
-     ancak mevcut .login-card'da zaten var. */
-}
-
-.strip {
-  height: 2px; /* Şeritlerin yüksekliği */
-  width: 100%; /* Şeritlerin tam genişliği */
-}
-
-.strip-yellow {
-  background-color: #f97316; /* Sarı */
-}
-
-.strip-red {
-  background-color: #be123c; /* Kırmızı */
-}
-
-.strip-blue {
-  background-color: #1e3a8a; /* Mavi */
-}
-/* ----------------------------------------- */
 
 /* Main Content */
 .login-content {
@@ -83,7 +53,7 @@
   color: white;
   border-radius: 15px;
   padding: 15px 60px;
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* 40px'den 30px'e düşürün */
   max-width: 450px;
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
