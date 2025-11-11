@@ -50,7 +50,7 @@ const MemberAssignment = () => {
 
   return (
     <div className="member-page">
-      <h3>Üye Atama Sayfası</h3>
+      <h2>Üye Atama Sayfası</h2>
 
       {step === 1 && (
         <div className="step-1">

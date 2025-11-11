@@ -17,7 +17,7 @@ const AdminMainPage = () => {
         <nav className="sidebar-menu">
           <button
             className="menu-item"
-            onClick={() => navigate("/adminmainpage")}
+            onClick={() => navigate("/adminmainpage/profile")}
           >
             Profilim
           </button>
@@ -27,7 +27,12 @@ const AdminMainPage = () => {
           >
             Komisyon Üyesi Atama
           </button>
-          <button className="menu-item">Komisyon Üye Bilgileri</button>
+          <button
+            className="menu-item"
+            onClick={() => navigate("commission-members")}
+          >
+            Komisyon Üye Bilgileri
+          </button>
           <div className="menu-spacer" />
         </nav>
       </aside>

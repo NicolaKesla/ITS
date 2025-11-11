@@ -28,6 +28,12 @@ const AdminProfile = () => {
     setEditing("");
   };
   const navigate = useNavigate();
+  const [showPwdModal, setShowPwdModal] = useState(false);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pwdErrors, setPwdErrors] = useState("");
+  const [pwdChanged, setPwdChanged] = useState(false);
 
   return (
     <div className="admin-profile">
@@ -192,7 +198,18 @@ const AdminProfile = () => {
       </div>
 
       <div className="profile-footer">
-        <button className="secondary-btn">Şifre Değiştirme</button>
+        <button
+          className="secondary-btn"
+          onClick={() => {
+            setOldPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+            setPwdErrors("");
+            setShowPwdModal(true);
+          }}
+        >
+          Şifre Değiştirme
+        </button>
         <button
           className="primary-btn"
           onClick={() => {
@@ -203,6 +220,114 @@ const AdminProfile = () => {
           Çıkış
         </button>
       </div>
+      {/* Password change modal */}
+      {showPwdModal && (
+        <div className="modal-overlay" onClick={() => setShowPwdModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setShowPwdModal(false)}
+              aria-label="kapat"
+            >
+              ✕
+            </button>
+            <div className="modal-body">
+              <h4>Şifre Değiştir</h4>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!oldPassword) {
+                    setPwdErrors("Eski şifre boş olamaz.");
+                    return;
+                  }
+                  if (!newPassword) {
+                    setPwdErrors("Yeni şifre boş olamaz.");
+                    return;
+                  }
+                  if (newPassword !== confirmPassword) {
+                    setPwdErrors("Yeni şifre ve tekrarı eşleşmiyor.");
+                    return;
+                  }
+
+                  setPwdErrors("");
+                  const payload = { oldPassword, newPassword };
+                  // TODO: call backend endpoint here. For now log and simulate success.
+                  // Example: await api.post('/auth/change-password', payload)
+                  // eslint-disable-next-line no-console
+                  console.log("Change password payload:", payload);
+                  setShowPwdModal(false);
+                  setPwdChanged(true);
+                }}
+              >
+                <div className="form-group">
+                  <label>Eski Şifre</label>
+                  <input
+                    type="password"
+                    className="form-input"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Yeni Şifre</label>
+                  <input
+                    type="password"
+                    className="form-input"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Yeni Şifre (Tekrar)</label>
+                  <input
+                    type="password"
+                    className="form-input"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                {pwdErrors && <div className="form-error">{pwdErrors}</div>}
+
+                <div className="actions-row" style={{ marginTop: 12 }}>
+                  <button type="submit" className="primary-btn">
+                    Değiştir
+                  </button>
+                  <button
+                    type="button"
+                    className="secondary-btn"
+                    onClick={() => setShowPwdModal(false)}
+                    style={{ marginLeft: 8 }}
+                  >
+                    İptal
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {pwdChanged && (
+        <div className="modal-overlay" onClick={() => setPwdChanged(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setPwdChanged(false)}
+              aria-label="kapat"
+            >
+              ✕
+            </button>
+            <div className="modal-body">
+              <div className="success-message">
+                Şifre başarıyla değiştirildi.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
