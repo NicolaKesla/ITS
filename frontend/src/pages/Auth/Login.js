@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import GtuLogo from "../../assets/gtu-logo.png";
 
@@ -9,6 +10,7 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +32,8 @@ const Login = () => {
 
       // Demo amaçlı - gerçek uygulamada API çağrısı yapılacak
       if (formData.email && formData.password) {
-        alert("Giriş başarılı! Dashboard'a yönlendiriliyorsunuz...");
-        // navigate('/dashboard'); // React Router ile yönlendirme
+        // Başarılı girişte admin ana sayfasına yönlendir
+        navigate("/adminmainpage", { state: { email: formData.email } });
       } else {
         throw new Error("Geçersiz bilgiler");
       }
@@ -44,8 +46,8 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => {
-    alert("Şifre sıfırlama sayfasına yönlendiriliyorsunuz...");
-    // navigate('/forgot-password');
+    // yönlendir: email giriş sayfasına
+    navigate("/forgotPassword");
   };
 
   return (

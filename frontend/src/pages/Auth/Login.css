@@ -23,18 +23,16 @@
   margin: auto; /* Ekstra ortalama */
 }
 
-/* 1. Logonun Bulunduğu Alanın Tam Genişlik Kaplaması */
 .login-header {
-  width: 100%; /* BURASI ÖNEMLİ: Kapsayıcıyı tam genişlik yapar */
-  padding: 20px 0; /* Üstten ve alttan boşluk bırakır */
+  width: 100%;
+  padding: 20px 0;
 }
 
 .logo-container {
-  text-align: center; /* Logoyu ortalamak için */
+  text-align: center;
 }
 
 .gtu-logo {
-  /*bütün ekranı kaplaması için*/
   max-width: 100%;
   height: auto;
   display: block; /* Tek başına satır içi eleman gibi davranmasını engellemek için */
