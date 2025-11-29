@@ -1,14 +1,15 @@
 {
-  "name": "backend",
+  "name": "staj-backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio",
-    "prisma:seed": "node prisma/seed.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prisma:seed": "node prisma/seed.js",
+    "dev": "node index.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -16,14 +17,13 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.18.0",
-    "bcryptjs": "^3.0.2",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "prisma": "^6.18.0"
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "prisma": "^6.18.0"
   }
 }

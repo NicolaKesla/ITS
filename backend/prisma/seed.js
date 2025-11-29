@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 // A pre-hashed password for 'password123' (using bcrypt, cost 10)
 // This is best practice so you don't store plain text.
 const HASHED_PASSWORD =
-  '$2b$10$8.s..G2wTMLNlY.R.b.SbeS3g1xR.x5sKUlh.Xw.b.pS9.G.c.xW2';
+  '$2b$10$vOqam42NDF7.qk7lcv8Hpe51Wwv9Atp/yM65eRT5fGMtSGtmtxjZe';
 
 async function main() {
   console.log(`Start seeding ...`);
@@ -57,6 +57,7 @@ async function main() {
     where: { username: 'admin1' },
     update: {},
     create: {
+      name: 'Admin User',
       username: 'admin1',
       email: 'admin1@example.com',
       password: HASHED_PASSWORD,
@@ -67,6 +68,7 @@ async function main() {
     where: { username: 'admin2' },
     update: {},
     create: {
+      name: 'Admin Two',
       username: 'admin2',
       email: 'admin2@example.com',
       password: HASHED_PASSWORD,
@@ -79,6 +81,7 @@ async function main() {
     where: { username: 'ceng_chair' },
     update: {},
     create: {
+      name: 'Ahmet Yılmaz',
       username: 'ceng_chair',
       email: 'ceng_chair@example.com',
       password: HASHED_PASSWORD,
@@ -90,6 +93,7 @@ async function main() {
     where: { username: 'ceng_member1' },
     update: {},
     create: {
+      name: 'Mehmet Kaya',
       username: 'ceng_member1',
       email: 'ceng_member1@example.com',
       password: HASHED_PASSWORD,
@@ -101,6 +105,7 @@ async function main() {
     where: { username: 'ceng_member2' },
     update: {},
     create: {
+      name: 'Ayşe Demir',
       username: 'ceng_member2',
       email: 'ceng_member2@example.com',
       password: HASHED_PASSWORD,
@@ -114,6 +119,7 @@ async function main() {
     where: { username: 'eeng_chair' },
     update: {},
     create: {
+      name: 'Fatma Öztürk',
       username: 'eeng_chair',
       email: 'eeng_chair@example.com',
       password: HASHED_PASSWORD,
@@ -125,6 +131,7 @@ async function main() {
     where: { username: 'eeng_member1' },
     update: {},
     create: {
+      name: 'Can Arslan',
       username: 'eeng_member1',
       email: 'eeng_member1@example.com',
       password: HASHED_PASSWORD,
@@ -136,6 +143,7 @@ async function main() {
     where: { username: 'eeng_member2' },
     update: {},
     create: {
+      name: 'Zeynep Çelik',
       username: 'eeng_member2',
       email: 'eeng_member2@example.com',
       password: HASHED_PASSWORD,
@@ -149,6 +157,7 @@ async function main() {
     where: { username: 'meng_chair' },
     update: {},
     create: {
+      name: 'Burak Şahin',
       username: 'meng_chair',
       email: 'meng_chair@example.com',
       password: HASHED_PASSWORD,
@@ -160,6 +169,7 @@ async function main() {
     where: { username: 'meng_member1' },
     update: {},
     create: {
+      name: 'Elif Yıldız',
       username: 'meng_member1',
       email: 'meng_member1@example.com',
       password: HASHED_PASSWORD,
@@ -171,6 +181,7 @@ async function main() {
     where: { username: 'meng_member2' },
     update: {},
     create: {
+      name: 'Emre Aydın',
       username: 'meng_member2',
       email: 'meng_member2@example.com',
       password: HASHED_PASSWORD,

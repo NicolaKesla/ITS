@@ -1,4 +1,4 @@
-//Prisma schema file,
+// Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
@@ -12,7 +12,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 
 // ------------------------
 // Enums
@@ -43,16 +42,18 @@ model Role {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  username     String  @unique
-  email        String  @unique
-  password     String
-  roleId       Int
-  role         Role    @relation(fields: [roleId], references: [id])
+  id                      Int     @id @default(autoincrement())
+  name                    String
+  username                String  @unique
+  email                   String  @unique
+  password                String
+  requiresPasswordChange  Boolean @default(false)
+  roleId                  Int
+  role                    Role    @relation(fields: [roleId], references: [id])
   /// Hoca/Kullanıcı'nın departmanı (opsiyonel)
-  departmentId Int?
-  department   Department? @relation(fields: [departmentId], references: [id])
-  createdAt    DateTime @default(now())
+  departmentId            Int?
+  department              Department? @relation(fields: [departmentId], references: [id])
+  createdAt               DateTime @default(now())
 }
 
 // ------------------------
