@@ -2,6 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CommissionStatus.css';
 
+// API Configuration
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const api = axios.create({
+    baseURL: API_URL,
+    headers: { 'Content-Type': 'application/json' }
+});
+
+// Add auth token to requests
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
 const CommissionStatus = () => {
     const [commissionData, setCommissionData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +29,7 @@ const CommissionStatus = () => {
 
     const fetchCommissionStatus = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/commission-status');
+            const response = await api.get('/commission-status');
             setCommissionData(response.data);
         } catch (err) {
             console.error('Error fetching commission status:', err);

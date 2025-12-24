@@ -68,7 +68,7 @@ const ChangePassword = () => {
         }
 
         try {
-            await axios.post('http://localhost:3001/api/change-password', {
+            await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:3001/api'}/change-password`, {
                 email: userEmail,
                 currentPassword: formData.currentPassword,
                 newPassword: formData.newPassword
