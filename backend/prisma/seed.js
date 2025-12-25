@@ -33,22 +33,139 @@ async function main() {
   });
 
   // 3. Departments (Seeding before Users/Students)
-  console.log('Seeding Departments...');
-  const compEng = await prisma.department.upsert({
-    where: { name: 'Computer Engineering' },
-    update: {},
-    create: { name: 'Computer Engineering' },
-  });
-  const elecEng = await prisma.department.upsert({
-    where: { name: 'Electrical Engineering' },
-    update: {},
-    create: { name: 'Electrical Engineering' },
-  });
-  const mechEng = await prisma.department.upsert({
-    where: { name: 'Mechanical Engineering' },
-    update: {},
-    create: { name: 'Mechanical Engineering' },
-  });
+console.log('Seeding Departments...');
+
+const bilgisayarMuh = await prisma.department.upsert({
+  where: { name: 'Bilgisayar Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Bilgisayar Mühendisliği (İngilizce)' },
+});
+
+const biyomuh = await prisma.department.upsert({
+  where: { name: 'Biyomühendislik (İngilizce)' },
+  update: {},
+  create: { name: 'Biyomühendislik (İngilizce)' },
+});
+
+const cevreMuh = await prisma.department.upsert({
+  where: { name: 'Çevre Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Çevre Mühendisliği (İngilizce)' },
+});
+
+const elektronikMuh = await prisma.department.upsert({
+  where: { name: 'Elektronik Mühendisliği' },
+  update: {},
+  create: { name: 'Elektronik Mühendisliği' },
+});
+
+const endustriMuh = await prisma.department.upsert({
+  where: { name: 'Endüstri Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Endüstri Mühendisliği (İngilizce)' },
+});
+
+const endustriselTasarim = await prisma.department.upsert({
+  where: { name: 'Endüstriyel Tasarım' },
+  update: {},
+  create: { name: 'Endüstriyel Tasarım' },
+});
+
+const fizik = await prisma.department.upsert({
+  where: { name: 'Fizik (İngilizce)' },
+  update: {},
+  create: { name: 'Fizik (İngilizce)' },
+});
+
+const haritaMuh = await prisma.department.upsert({
+  where: { name: 'Harita Mühendisliği' },
+  update: {},
+  create: { name: 'Harita Mühendisliği' },
+});
+
+const iktisat = await prisma.department.upsert({
+  where: { name: 'İktisat' },
+  update: {},
+  create: { name: 'İktisat' },
+});
+
+const insaatMuh = await prisma.department.upsert({
+  where: { name: 'İnşaat Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'İnşaat Mühendisliği (İngilizce)' },
+});
+
+const isletme = await prisma.department.upsert({
+  where: { name: 'İşletme' },
+  update: {},
+  create: { name: 'İşletme' },
+});
+
+const kimya = await prisma.department.upsert({
+  where: { name: 'Kimya (İngilizce)' },
+  update: {},
+  create: { name: 'Kimya (İngilizce)' },
+});
+
+const kimyaMuh = await prisma.department.upsert({
+  where: { name: 'Kimya Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Kimya Mühendisliği (İngilizce)' },
+});
+
+const makineMuh = await prisma.department.upsert({
+  where: { name: 'Makine Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Makine Mühendisliği (İngilizce)' },
+});
+
+const malzemeBilimi = await prisma.department.upsert({
+  where: { name: 'Malzeme Bilimi ve Mühendisliği' },
+  update: {},
+  create: { name: 'Malzeme Bilimi ve Mühendisliği' },
+});
+
+const matematik = await prisma.department.upsert({
+  where: { name: 'Matematik (İngilizce)' },
+  update: {},
+  create: { name: 'Matematik (İngilizce)' },
+});
+
+const mimarlik = await prisma.department.upsert({
+  where: { name: 'Mimarlık' },
+  update: {},
+  create: { name: 'Mimarlık' },
+});
+
+const molekulerBiyoloji = await prisma.department.upsert({
+  where: { name: 'Moleküler Biyoloji ve Genetik (İngilizce)' },
+  update: {},
+  create: { name: 'Moleküler Biyoloji ve Genetik (İngilizce)' },
+});
+
+const sehirPlanlama = await prisma.department.upsert({
+  where: { name: 'Şehir ve Bölge Planlama' },
+  update: {},
+  create: { name: 'Şehir ve Bölge Planlama' },
+});
+
+const ucakMuh = await prisma.department.upsert({
+  where: { name: 'Uçak Mühendisliği (İngilizce)' },
+  update: {},
+  create: { name: 'Uçak Mühendisliği (İngilizce)' },
+});
+
+const veriBilimi = await prisma.department.upsert({
+  where: { name: 'Veri Bilimi ve Analitiği (İngilizce)' },
+  update: {},
+  create: { name: 'Veri Bilimi ve Analitiği (İngilizce)' },
+});
+
+const yonetimBilisim = await prisma.department.upsert({
+  where: { name: 'Yönetim Bilişim Sistemleri (İngilizce)' },
+  update: {},
+  create: { name: 'Yönetim Bilişim Sistemleri (İngilizce)' },
+});
 
   // 2. Users
   console.log('Seeding Users...');
@@ -86,7 +203,7 @@ async function main() {
       email: 'ceng_chair@example.com',
       password: HASHED_PASSWORD,
       roleId: roleChair.id,
-      departmentId: compEng.id,
+      departmentId: bilgisayarMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -98,7 +215,7 @@ async function main() {
       email: 'ceng_member1@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: compEng.id,
+      departmentId: bilgisayarMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -110,7 +227,7 @@ async function main() {
       email: 'ceng_member2@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: compEng.id,
+      departmentId: bilgisayarMuh.id,
     },
   });
 
@@ -124,7 +241,7 @@ async function main() {
       email: 'eeng_chair@example.com',
       password: HASHED_PASSWORD,
       roleId: roleChair.id,
-      departmentId: elecEng.id,
+      departmentId: elektronikMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -136,7 +253,7 @@ async function main() {
       email: 'eeng_member1@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: elecEng.id,
+      departmentId: elektronikMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -148,7 +265,7 @@ async function main() {
       email: 'eeng_member2@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: elecEng.id,
+      departmentId: elektronikMuh.id,
     },
   });
 
@@ -162,7 +279,7 @@ async function main() {
       email: 'meng_chair@example.com',
       password: HASHED_PASSWORD,
       roleId: roleChair.id,
-      departmentId: mechEng.id,
+      departmentId: makineMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -174,7 +291,7 @@ async function main() {
       email: 'meng_member1@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: mechEng.id,
+      departmentId: makineMuh.id,
     },
   });
   await prisma.user.upsert({
@@ -186,7 +303,7 @@ async function main() {
       email: 'meng_member2@example.com',
       password: HASHED_PASSWORD,
       roleId: roleMember.id,
-      departmentId: mechEng.id,
+      departmentId: makineMuh.id,
     },
   });
 
@@ -201,7 +318,7 @@ const s1 = await prisma.student.upsert({
     name: 'Ali Veli',
     email: 'ali.veli@example.com',
     phone_number: '555-101-0001',
-    departmentId: compEng.id,
+    departmentId: bilgisayarMuh.id,
   },
 });
 const s2 = await prisma.student.upsert({
@@ -212,7 +329,7 @@ const s2 = await prisma.student.upsert({
     name: 'Ayşe Kaya',
     email: 'ayse.kaya@example.com',
     phone_number: '555-101-0002',
-    departmentId: compEng.id,
+    departmentId: bilgisayarMuh.id,
   },
 });
 const s3 = await prisma.student.upsert({
@@ -223,7 +340,7 @@ const s3 = await prisma.student.upsert({
     name: 'Mehmet Yılmaz',
     email: 'mehmet.yilmaz@example.com',
     phone_number: '555-101-0003',
-    departmentId: compEng.id,
+    departmentId: bilgisayarMuh.id,
   },
 });
 const s4 = await prisma.student.upsert({
@@ -234,7 +351,7 @@ const s4 = await prisma.student.upsert({
     name: 'Fatma Demir',
     email: 'fatma.demir@example.com',
     phone_number: '555-101-0004',
-    departmentId: compEng.id,
+    departmentId: bilgisayarMuh.id,
   },
 });
 
@@ -247,7 +364,7 @@ const s5 = await prisma.student.upsert({
     name: 'Hasan Çelik',
     email: 'hasan.celik@example.com',
     phone_number: '555-102-0001',
-    departmentId: elecEng.id,
+    departmentId: elektronikMuh.id,
   },
 });
 const s6 = await prisma.student.upsert({
@@ -258,7 +375,7 @@ const s6 = await prisma.student.upsert({
     name: 'Zeynep Şahin',
     email: 'zeynep.sahin@example.com',
     phone_number: '555-102-0002',
-    departmentId: elecEng.id,
+    departmentId: elektronikMuh.id,
   },
 });
 const s7 = await prisma.student.upsert({
@@ -269,7 +386,7 @@ const s7 = await prisma.student.upsert({
     name: 'Burak Öz',
     email: 'burak.oz@example.com',
     phone_number: '555-102-0003',
-    departmentId: elecEng.id,
+    departmentId: elektronikMuh.id,
   },
 });
 const s8 = await prisma.student.upsert({
@@ -280,7 +397,7 @@ const s8 = await prisma.student.upsert({
     name: 'Elif Arda',
     email: 'elif.arda@example.com',
     phone_number: '555-102-0004',
-    departmentId: elecEng.id,
+    departmentId: elektronikMuh.id,
   },
 });
 
@@ -293,7 +410,7 @@ const s9 = await prisma.student.upsert({
     name: 'Kemal Can',
     email: 'kemal.can@example.com',
     phone_number: '555-103-0001',
-    departmentId: mechEng.id,
+    departmentId: makineMuh.id,
   },
 });
 const s10 = await prisma.student.upsert({
@@ -304,7 +421,7 @@ const s10 = await prisma.student.upsert({
     name: 'Derya Güneş',
     email: 'derya.gunes@example.com',
     phone_number: '555-103-0002',
-    departmentId: mechEng.id,
+    departmentId: makineMuh.id,
   },
 });
 const s11 = await prisma.student.upsert({
@@ -315,7 +432,7 @@ const s11 = await prisma.student.upsert({
     name: 'Ömer Faruk',
     email: 'omer.faruk@example.com',
     phone_number: '555-103-0003',
-    departmentId: mechEng.id,
+    departmentId: makineMuh.id,
   },
 });
 const s12 = await prisma.student.upsert({
@@ -326,7 +443,7 @@ const s12 = await prisma.student.upsert({
     name: 'İpek Yıldız',
     email: 'ipek.yildiz@example.com',
     phone_number: '555-103-0004',
-    departmentId: mechEng.id,
+    departmentId: makineMuh.id,
   },
 });
 
