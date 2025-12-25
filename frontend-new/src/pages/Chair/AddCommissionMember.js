@@ -3,7 +3,7 @@ import axios from 'axios';
 import authService from '../../services/authService';
 import './AddCommissionMember.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 const AddCommissionMember = () => {
     const [currentMembers, setCurrentMembers] = useState([]);

@@ -3,7 +3,7 @@ import axios from 'axios';
 import authService from '../../services/authService';
 import './StudentList.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 const StudentList = () => {
     const [terms, setTerms] = useState([]);
