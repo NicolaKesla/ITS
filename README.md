@@ -6,6 +6,11 @@ A comprehensive web application for managing student internships at Gebze Techni
 
 ITS is a full-stack application designed to track and manage student internships. It supports multiple user roles (Admin, Commission Chair, Commission Member) and handles the complete internship lifecycle from application to grading and reporting.
 
+## Guides
+
+- **[LOCAL_DEMO.md](LOCAL_DEMO.md)** — step-by-step local setup plus a full feature walkthrough for showcasing the system.
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** — production deployment guidelines and a security-hardening checklist.
+
 ## Tech Stack
 
 ### Backend
