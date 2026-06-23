@@ -324,52 +324,6 @@ export async function deleteInternship(req, res) {
   }
 }
 
-/**
- * DEBUG: Delete internship by studentId and internship type
- * DELETE /api/debug/internship/:studentId/:type
- * No auth required - for debugging only
- */
-export async function debugDeleteInternship(req, res) {
-  try {
-    const { studentId, type } = req.params;
-
-    // Validate type
-    if (!['STAJ1', 'STAJ2'].includes(type.toUpperCase())) {
-      return res.status(400).json({ 
-        error: 'Invalid type. Must be STAJ1 or STAJ2' 
-      });
-    }
-
-    const deleted = await prisma.internship.delete({
-      where: {
-        studentId_internshipOrder: {
-          studentId: studentId,
-          internshipOrder: type.toUpperCase()
-        }
-      }
-    });
-
-    return res.json({
-      success: true,
-      message: `Internship ${type.toUpperCase()} for student ${studentId} deleted successfully`,
-      deleted
-    });
-  } catch (error) {
-    console.error('Error deleting internship:', error);
-    
-    if (error.code === 'P2025') {
-      return res.status(404).json({ 
-        error: `Internship not found for student ${req.params.studentId} with type ${req.params.type}` 
-      });
-    }
-    
-    return res.status(500).json({ 
-      error: 'Failed to delete internship',
-      details: error.message 
-    });
-  }
-}
-
 // ========== HELPER FUNCTIONS ==========
 
 /**

@@ -6,7 +6,6 @@ import {
   getInternships,
   updateInternship,
   deleteInternship,
-  debugDeleteInternship,
   generateCommissionReport
 } from '../controllers/internshipController.js';
 import { authenticateToken, requireRole } from '../middlewares/auth.js';
@@ -45,8 +44,5 @@ router.delete('/internship/:id', authenticateToken, requireRole(['Commission Cha
 
 // Generate commission evaluation report
 router.post('/internship/generate-report', authenticateToken, requireRole(['Commission Chair', 'Commission Member', 'General Admin']), generateCommissionReport);
-
-// DEBUG: Delete internship by studentId and type (NO AUTH - for debugging only)
-router.delete('/debug/internship/:studentId/:type', debugDeleteInternship);
 
 export default router;

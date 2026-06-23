@@ -119,7 +119,7 @@ Add the following content to `.env`:
 
 ```env
 # Server Configuration
-PORT=5000
+PORT=3001
 NODE_ENV=development
 
 # Database Configuration
@@ -131,7 +131,14 @@ JWT_EXPIRE=7d
 
 # Frontend URL (for CORS)
 CLIENT_URL=http://localhost:3000
+
+# Email (OPTIONAL) - leave blank for local demos. When blank, the password-reset
+# code is printed to the backend console instead of being emailed.
+EMAIL_USER=
+EMAIL_PASS=
 ```
+
+> **Note:** The backend runs on port **3001** (the frontend expects it there by default). The previous version of this guide referenced port 5000 — use 3001.
 
 **⚠️ Important:** Replace `your_username` and `your_password` with your actual PostgreSQL credentials.
 
@@ -208,9 +215,9 @@ cd backend
 npm run dev
 ```
 
-Backend will run on: `http://localhost:5000`
+Backend will run on: `http://localhost:3001`
 
-You should see: `✓ Server running on port 5000` and `✓ Database connected`
+You should see: `✓ Database connected` and `✓ Server running on http://localhost:3001`
 
 ### Start Frontend Development Server
 
@@ -227,21 +234,26 @@ The application will automatically open in your browser.
 
 ## Default Login Credentials
 
-After seeding the database, you can use these credentials to test different roles:
+After seeding the database, you can use these credentials to test different roles.
+**Every seeded account uses the password `password123`.**
 
 **Admin:**
-- Email: `admin@gtu.edu.tr`
-- Password: `admin123`
+- Email: `admin1@example.com`
+- Password: `password123`
 
-**Commission Chair:**
-- Email: `chair@gtu.edu.tr`
-- Password: `chair123`
+**Commission Chair (Computer Engineering):**
+- Email: `ceng_chair@example.com`
+- Password: `password123`
 
-**Commission Member:**
-- Email: `member@gtu.edu.tr`
-- Password: `member123`
+**Commission Member (Computer Engineering):**
+- Email: `ceng_member1@example.com`
+- Password: `password123`
 
-⚠️ **Note:** All users are required to change their password on first login.
+Other seeded departments follow the same pattern (e.g. `eeng_chair@example.com`,
+`meng_chair@example.com`, `ceng_member2@example.com`, etc.).
+
+ℹ️ **Note:** Seeded accounts can log in directly. Accounts created later through the
+app (new chairs/members) are flagged to change their temporary password on first login.
 
 ## API Endpoints
 
@@ -272,10 +284,13 @@ psql postgres
 
 **Port Already in Use:**
 ```bash
-# Find process using port 5000
-lsof -i :5000
-# Kill the process
+# macOS/Linux: find process using port 3001
+lsof -i :3001
 kill -9 <PID>
+
+# Windows (PowerShell): find and kill process on port 3001
+netstat -ano | findstr :3001
+taskkill /PID <PID> /F
 ```
 
 **Prisma Client Not Generated:**

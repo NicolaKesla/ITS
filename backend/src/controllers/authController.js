@@ -3,14 +3,19 @@ import jwt from 'jsonwebtoken';
 import prisma from '../config/prisma.js';
 import nodemailer from 'nodemailer';
 
-// Configure Email Transporter
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+// Configure Email Transporter (optional).
+// If EMAIL_USER / EMAIL_PASS are not set, emails are skipped and the password
+// reset code is printed to the server console instead (handy for local demos).
+const emailEnabled = Boolean(process.env.EMAIL_USER && process.env.EMAIL_PASS);
+const transporter = emailEnabled
+    ? nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    })
+    : null;
 
 export const login = async (req, res) => {
     try {
@@ -41,9 +46,9 @@ export const login = async (req, res) => {
 
         // Create token
         const token = jwt.sign(
-            { userId: user.id, email: user.email },  // Payload
-            process.env.JWT_SECRET,                  // Secret
-            { expiresIn: '1h' }                      // Expires in 1 hour
+            { userId: user.id, email: user.email },        // Payload
+            process.env.JWT_SECRET,                        // Secret
+            { expiresIn: process.env.JWT_EXPIRE || '7d' }  // Expiry (configurable)
         );
 
         // Send token back to user
@@ -98,21 +103,24 @@ export const forgotPassword = async (req, res) => {
 
         console.log(`[DEV ONLY] Password Reset Code for ${email}: ${code}`);
 
-        // Send Email using the requested structure
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: email, // Send to the user who requested the reset
-            subject: 'ITS Şifre Sıfırlama Kodu',
-            text: `Şifre sıfırlama kodunuz: ${code}\n\nBu kod 15 dakika süreyle geçerlidir.`
-        };
+        // Send the code by email if email is configured; otherwise the console
+        // log above is the fallback for local development/demos.
+        if (transporter) {
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: email, // Send to the user who requested the reset
+                subject: 'ITS Şifre Sıfırlama Kodu',
+                text: `Şifre sıfırlama kodunuz: ${code}\n\nBu kod 15 dakika süreyle geçerlidir.`
+            };
 
-        transporter.sendMail(mailOptions, function(error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+        }
 
         res.json({ message: 'Doğrulama kodu e-posta adresinize gönderildi.' });
 

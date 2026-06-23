@@ -2,12 +2,15 @@ import bcrypt from 'bcryptjs';
 import prisma from '../config/prisma.js';
 
 export const createUser = async (req, res) => {
-    const { email, username, password, roleId } = req.body;
+    const { name, email, username, password, roleId } = req.body;
 
     // Validate required fields
     if (!email || !username || !password) {
         return res.status(400).json({ error: 'Email, username ve password zorunludur.' });
     }
+
+    // `name` is required by the schema; fall back to the username if not given.
+    const finalName = name || username;
 
     // 10 is the general safety standard
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -28,6 +31,7 @@ export const createUser = async (req, res) => {
 
         const newUser = await prisma.user.create({
             data: {
+                name: finalName,
                 email: email,
                 username: username,
                 password: hashedPassword,
